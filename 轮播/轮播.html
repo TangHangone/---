@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	<style>
+		*{margin: 0; padding: 0; list-style: none; }
+		#box{margin: 50px auto; width: 850px; height: 500px; position: relative;  overflow: hidden;}
+		#box ul{  height: 500px;  position: relative;  top: 0;  transition: 1s;   }
+		#box ul li {height:500px; width: 850px; }
+		#box ul li.ac{}
+		#box ol {position:absolute;right: 42%;bottom: 10px;z-index:6}
+		#box ol li{width: 20px;height: 20px;background:greenyellow    ;margin-left: 5px;float: left;border-radius: 50%;
+		opacity: 0.6;    line-height: 20px;text-align: center;cursor: pointer;}
+		#box ol li.ac{background: red;color: #fff;}
+		#box>a{ text-decoration: none;position:absolute  ;top: 50%;margin-top: -10px;height: 40px;
+		line-height: 32px;text-align: center;width: 40px;font-size: 40px;vertical-align: middle;
+		color: #fff;background:chartreuse ;z-index:6;opacity: 0.4;}
+		#goPrev{left: 0;}
+		#goNext{right: 0;}
+	
+	</style>
+	</head>
+	<body>
+		<div id="box">
+			<ul>
+				<li class="ac"><a href="javascript:alert(0);"><img src="image/1.jpg" /></a></li>
+				<li><a href="javascript:alert(1);"><img src="image/2.jpg" /></a></li>
+				<li><a href="javascript:alert(2);"><img src="image/3.jpg" /></a></li>
+				<li><a href="javascript:alert(3);"><img src="image/4.jpg" /></a></li>
+				<li><a href="javascript:alert(4);"><img src="image/5.jpg" /></a></li>
+				
+			</ul>
+			<ol>
+			</ol>
+			<a href="javascript:;" id="goPrev">&laquo;</a>
+			<a href="javascript:;" id="goNext">&raquo;</a>
+		</div>
+		<script>
+			//找元素并取名
+			var box =document.getElementById("box"),
+			ul =document.getElementsByTagName("ul")[0],
+			imgs= box.querySelector("ul").children ,
+			ol=box.querySelector("ol"),
+			goPrev=document.getElementById("goPrev"),
+			goNext=document.getElementById("goNext"),
+			btns=[];
+			var index=0 , lastIndex=0, timer=null; 
+			for(var i=0;i<imgs.length;i++){  //创建ol里的li
+				var li=document.createElement("li");
+				li.innerHTML=i+1;
+				ol.appendChild(li);
+				btns.push(li);
+			}
+			//ol li 绑定点击事件;
+			for(let i=0;i<btns.length;i++){
+				btns[i].onclick=function(){
+				
+					index=i;
+				
+					
+					lastIndex=index;
+				}
+				changeImg ()
+			}
+			var num= 0;
+			goNext.onclick=function(){
+				ul.style.top=-(num +500)+"px";
+				num=num+500;
+				if(num>1500){
+					num=-500;
+				}
+				changeImg ()
+				}
+			// goPrev.onclick=function(){
+			// 	ul.style.top=(num +500)+"px";
+			// 	num=num+500;
+			// 	if(num<0){
+			// 		num=2000;
+			// 	}
+			// }
+			 timer= setInterval(goNext.onclick ,2500)
+			box.onmouseenter=function(){
+				clearInterval(timer);
+			}
+			box.onmouseleave=function(){
+				timer= setInterval(goNext.onclick ,2500)
+				return timer;
+			}
+			function changeImg () {
+				btns[lastIndex].classList.remove('ac');
+				imgs[lastIndex].classList.remove('ac');
+				btns[index].classList.add('ac');
+				imgs[index].classList.add('ac');}
+		</script>
+		
+	</body>
+</html>

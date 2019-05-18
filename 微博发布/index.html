@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	<style>
+		.modal{width: 100%; height: 100%;  background: #00FFFF;}
+		.popbox{display:none; width: 300px; height: 180px;  background: #CFCFCF; 
+		position: relative ; left: 0; top: 0; }
+		.popbox h3{width: 300px; height: 30px;  background: #008DE1;  }
+		.popbox span {float: right;  margin-top: -45px ;margin-right: 5px; }
+		.content{width: 290px; height: 60px;     }
+		.ul1{height: 50px;  width: 50px ; background:hotpink ;  }
+		.ul1 li:hover {background:hotpink ;   }
+	</style>
+	
+	
+	</head>
+	<body>
+		<button id="btn">点击发布</button>
+		<div id="box" class="popbox">
+			<h3 class="move" > 用户发布</h3>   <span><a href="#" class="A1"> X</a></span>
+			用户： <input class="user" type="text"/>
+			
+			 <input  class="content" type="text" value="今天要说点什么">
+		
+			  &nbsp; &nbsp; &nbsp;<input class="pub" type="submit" value="发布" />
+		</div>
+	
+		<script src="js/index.js"></script>
+		<script src="js/drag.js"></script>
+		<script src="js/tools.js"></script>
+	</body>
+</html>
